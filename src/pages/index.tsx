@@ -1,31 +1,36 @@
 // src/pages/index.tsx
 "use client";
 
-import { SignIn, SignedIn, SignedOut, useClerk } from "@clerk/nextjs";
+import { SignIn, SignedIn, SignedOut, useClerk, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export default function SignInPage() {
   const router = useRouter();
-  const clerk = useClerk(); // Hook to get Clerk instance
+  const clerk = useClerk();
+  const { isSignedIn } = useUser();
 
   // Redirect signed-in users automatically
+  useEffect(() => {
+    if (isSignedIn) {
+      router.push("/home");
+    }
+  }, [isSignedIn, router]);
+
+  // Optional: listen to session changes (if needed)
   useEffect(() => {
     if (clerk) {
       const unsubscribe = clerk.addListener(({ session }) => {
         if (session) router.push("/home");
       });
-
-      return () => {
-        unsubscribe(); // clean up listener
-      };
+      return () => unsubscribe();
     }
   }, [clerk, router]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 sm:px-6">
       <SignedIn>
-        {() => router.push("/home")}
+        {/* Content for signed-in users can go here if needed */}
       </SignedIn>
 
       <SignedOut>
