@@ -2,9 +2,19 @@ import { useUser, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 
+interface Profile {
+  firstName?: string;
+  lastName?: string;
+  bio?: string;
+  birthDay?: string | number;
+  birthMonth?: string | number;
+  email?: string;
+  phoneNumber?: string;
+}
+
 export default function ProfilePage() {
   const { user } = useUser();
-  const profile = user?.unsafeMetadata?.profile;
+  const profile: Profile | undefined = user?.unsafeMetadata?.profile as Profile | undefined;
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white text-black px-4 py-8">
@@ -28,7 +38,7 @@ export default function ProfilePage() {
           {profile ? (
             <div className="w-full space-y-4">
               <div className="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700">
-                {profile.firstName} {profile.lastName}
+                {profile.firstName || ""} {profile.lastName || ""}
               </div>
               <div className="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700 min-h-[60px]">
                 {profile.bio || "No bio added"}
@@ -39,7 +49,7 @@ export default function ProfilePage() {
                   : "Birthday not added"}
               </div>
               <div className="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700">
-                {profile.email}
+                {profile.email || "No email added"}
               </div>
               <div className="border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700">
                 {profile.phoneNumber || "No number added"}

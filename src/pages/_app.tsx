@@ -25,20 +25,20 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           <Navbar />
         </SignedIn>
 
-        <main className="flex-1">
-          {isPublicPage ? (
-            <Component {...pageProps} />
-          ) : (
-            <>
-              <SignedIn>
-                <Component {...pageProps} />
-              </SignedIn>
-              <SignedOut>
-                <RedirectToSignIn />
-              </SignedOut>
-            </>
-          )}
-        </main>
+        <main className="flex-1 pt-14">
+  {isPublicPage ? (
+    <Component {...pageProps} />
+  ) : (
+    <>
+      <SignedIn>
+        <Component {...pageProps} />
+      </SignedIn>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
+    </>
+  )}
+</main>
         <Footer />
       </div>
     </ClerkProvider>

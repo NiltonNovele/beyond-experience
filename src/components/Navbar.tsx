@@ -1,10 +1,19 @@
-// src/components/Navbar.tsx
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { UserButton } from "@clerk/nextjs";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Home, Users, Calendar, MapPin, HandCoins, Mail, UserCheck } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  Users,
+  Calendar,
+  MapPin,
+  HandCoins,
+  Mail,
+  UserCheck,
+} from "lucide-react";
 
 export default function Navbar() {
   const router = useRouter();
@@ -21,49 +30,59 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="flex items-center justify-between px-6 py-3 fixed top-0 left-0 right-0 z-50">
-      {/* Logo */}
-      <div className="cursor-pointer select-none" onClick={() => router.push("/home")}>
-        <img src="/logo.png" alt="Beyond Logo" className="w-30 h-15 md:w-12 md:h-12" />
-      </div>
+    <nav className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="flex items-center justify-between px-6 py-3 md:py-4 max-w-7xl mx-auto">
+        {/* Logo */}
+        <div
+          className="cursor-pointer select-none flex items-center"
+          onClick={() => router.push("/home")}
+        >
+          <img
+            src="/logo.png"
+            alt="Beyond Logo"
+            className="w-28 h-auto md:w-32 md:h-auto"
+          />
+        </div>
 
-      {/* Desktop Nav */}
-      <div className="hidden md:flex items-center gap-6">
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={`${
-              router.pathname === link.href
-                ? "text-black font-semibold"
-                : "text-gray-500 hover:text-black"
-            } transition-colors`}
-          >
-            {link.label}
-          </Link>
-        ))}
-        <UserButton afterSignOutUrl="/" />
-      </div>
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-6">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`flex items-center gap-1 ${
+                router.pathname === link.href
+                  ? "text-black font-semibold"
+                  : "text-gray-500 hover:text-black"
+              } transition-colors`}
+            >
+              {link.icon}
+              {link.label}
+            </Link>
+          ))}
+          <UserButton afterSignOutUrl="/" />
+        </div>
 
-      {/* Mobile Hamburger Button */}
-      <button
-        className="md:hidden bg-black text-white p-3 rounded-full shadow-lg flex items-center justify-center focus:outline-none fixed top-4 right-4 z-50"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle menu"
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+        {/* Mobile Hamburger Button */}
+        <button
+          className="md:hidden bg-black text-white p-3 rounded-full shadow-lg flex items-center justify-center focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-20 right-4 w-64 bg-white rounded-3xl shadow-xl z-40 border border-black px-6 py-8 flex flex-col items-start space-y-6"
+            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-white shadow-lg border-t border-gray-200 w-full px-6 py-6 flex flex-col gap-4"
           >
             {links.map((link) => (
               <Link
