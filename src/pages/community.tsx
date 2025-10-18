@@ -38,7 +38,14 @@ export default function ConstructionProgress() {
     title: "🎉",
     content:
       "",
-    media: ["/img (1).jpg", "/img (2).jpg", "/img (3).jpg", "/img (4).jpg"],
+    media: [
+        "/images/img-1.jpg",
+        "/images/img-2.jpg",
+        "/images/img-3.mp4",
+        "/images/img-4.jpg",
+        "/images/img-17.jpg",
+        "/images/img-18.jpg",
+      ],
     likes: 45,
     timestamp: "2 weeks ago",
   },
@@ -47,7 +54,14 @@ export default function ConstructionProgress() {
     title: "🚧",
     content:
       "",
-    media: ["/img (5).jpg", "/img (6).jpg", "/img (7).jpg", "/img (8).jpg"],
+    media: [
+        "/images/img-5.jpg",
+        "/images/img-6.mp4",
+        "/images/img-7.jpg",
+        "/images/img-8.jpg",
+        "/images/img-19.jpg",
+        "/images/img-20.jpg",
+      ],
     likes: 60,
     timestamp: "1 week ago",
   },
@@ -56,7 +70,13 @@ export default function ConstructionProgress() {
     title: "🧱",
     content:
       "",
-    media: ["/img (9).jpg", "/img (10).jpg", "/img (11).jpg", "/img (12).jpg"],
+    media: [
+        "/images/img-9.jpg",
+        "/images/img-10.jpg",
+        "/images/img-11.jpg",
+        "/images/img-12.jpg",
+        "/images/img-21.jpg",
+      ],
     likes: 74,
     timestamp: "3 days ago",
   },
@@ -65,7 +85,13 @@ export default function ConstructionProgress() {
     title: "🏗️",
     content:
       "",
-    media: ["/img (13).jpg", "/img (14).jpg", "/img (15).jpg", "/img (16).jpg"],
+    media: [
+        "/images/img-13.jpg",
+        "/images/img-14.jpg",
+        "/images/img-15.jpg",
+        "/images/img-16.jpg",
+        "/images/img-22.jpg",
+      ],
     likes: 102,
     timestamp: "Today",
   },
