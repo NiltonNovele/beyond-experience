@@ -206,7 +206,7 @@ export default function ConstructionProgress() {
       <div className="max-w-4xl mx-auto mb-12 relative rounded-xl overflow-hidden shadow-lg">
         <video
           ref={videoRef}
-          src="/video.mp4"
+          src="/video.mov"
           className="w-full h-[320px] sm:h-[400px] object-cover bg-black rounded-xl"
           muted={isMuted}
         />
