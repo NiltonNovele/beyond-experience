@@ -7,7 +7,7 @@ export default function Visit() {
     <main className="min-h-screen flex flex-col items-center py-12 px-4 bg-white text-black">
       {/* Header */}
       <div className="text-center mb-10">
-        <h1 className="text-5xl font-extrabold tracking-tight mb-3">
+        <h1 className="text-7xl font-extrabold tracking-tight mb-3" style={{ fontFamily: "MyFont2" }}>
           Visit Beyond
         </h1>
         <p className="text-gray-700 text-sm">

@@ -6,12 +6,12 @@ export default function Contact() {
     <main className="min-h-screen flex flex-col items-center justify-between bg-white px-6 py-12 md:py-16 text-black">
       {/* Header */}
       <section className="text-center space-y-4 max-w-lg">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "MyFont2" }}>
           Get in touch
         </h1>
         <p className="text-gray-700 text-sm md:text-base leading-relaxed">
-          Whether you’ve got a question, a testimony to share, or just want to say hi —
-          we’d love to hear from you.
+          Whether you have got a question, a testimony to share, or just want to say hi —
+          we wouldd love to hear from you.
         </p>
       </section>
 

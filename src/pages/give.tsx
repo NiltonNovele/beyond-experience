@@ -17,7 +17,7 @@ export default function Give() {
     <main className="min-h-screen bg-white flex flex-col items-center px-6 py-12 text-black">
       {/* Header */}
       <header className="text-center mb-10">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight">
+        <h1 className="text-5xl font-extrabold mb-4 tracking-tight" style={{ fontFamily: "MyFont2" }}>
           Online Giving
         </h1>
         <p className="text-gray-700 text-base max-w-sm mx-auto">

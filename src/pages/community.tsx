@@ -12,11 +12,11 @@ import {
   VolumeX,
   Play,
   Pause,
-  RotateCcw,
   Maximize2,
   Edit,
   Check,
   X,
+  RotateCcw,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -29,16 +29,15 @@ interface Post {
   timestamp: string;
 }
 
-const ADMIN_PIN = "0101"; // Change this
+const ADMIN_PIN = "0101";
 
 export default function ConstructionProgress() {
   const [posts, setPosts] = useState<Post[]>([
     {
-    id: 1,
-    title: "🎉",
-    content:
-      "",
-    media: [
+      id: 1,
+      title: "🎉",
+      content: "",
+      media: [
         "/images/img-1.jpg",
         "/images/img-2.jpg",
         "/images/img-3.mp4",
@@ -46,15 +45,14 @@ export default function ConstructionProgress() {
         "/images/img-17.jpg",
         "/images/img-18.jpg",
       ],
-    likes: 45,
-    timestamp: "2 weeks ago",
-  },
-  {
-    id: 2,
-    title: "🚧",
-    content:
-      "",
-    media: [
+      likes: 45,
+      timestamp: "2 weeks ago",
+    },
+    {
+      id: 2,
+      title: "🚧",
+      content: "",
+      media: [
         "/images/img-5.jpg",
         "/images/img-6.mp4",
         "/images/img-7.jpg",
@@ -62,39 +60,37 @@ export default function ConstructionProgress() {
         "/images/img-19.jpg",
         "/images/img-20.jpg",
       ],
-    likes: 60,
-    timestamp: "1 week ago",
-  },
-  {
-    id: 3,
-    title: "🧱",
-    content:
-      "",
-    media: [
+      likes: 60,
+      timestamp: "1 week ago",
+    },
+    {
+      id: 3,
+      title: "🧱",
+      content: "",
+      media: [
         "/images/img-9.jpg",
         "/images/img-10.jpg",
         "/images/img-11.jpg",
         "/images/img-12.jpg",
         "/images/img-21.jpg",
       ],
-    likes: 74,
-    timestamp: "3 days ago",
-  },
-  {
-    id: 4,
-    title: "🏗️",
-    content:
-      "",
-    media: [
+      likes: 74,
+      timestamp: "3 days ago",
+    },
+    {
+      id: 4,
+      title: "🏗️",
+      content: "",
+      media: [
         "/images/img-13.jpg",
         "/images/img-14.jpg",
         "/images/img-15.jpg",
         "/images/img-16.jpg",
         "/images/img-22.jpg",
       ],
-    likes: 102,
-    timestamp: "Today",
-  },
+      likes: 102,
+      timestamp: "Today",
+    },
   ]);
 
   const [newPost, setNewPost] = useState({
@@ -104,7 +100,7 @@ export default function ConstructionProgress() {
   });
 
   const [isMuted, setIsMuted] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const [isAdmin, setIsAdmin] = useState(false);
@@ -124,11 +120,20 @@ export default function ConstructionProgress() {
       setIsPlaying(false);
     }
   };
-  const toggleMute = () => setIsMuted((prev) => !prev);
-  const rewind10 = () => {
-    if (videoRef.current)
-      videoRef.current.currentTime = Math.max(videoRef.current.currentTime - 10, 0);
+
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
   };
+
+  const restartVideo = () => {
+    if (!videoRef.current) return;
+    videoRef.current.currentTime = 0;
+    videoRef.current.play();
+    setIsPlaying(true);
+  };
+
   const toggleFullScreen = () => {
     if (!videoRef.current) return;
     if (document.fullscreenElement) document.exitFullscreen();
@@ -145,12 +150,11 @@ export default function ConstructionProgress() {
   };
 
   // POST ACTIONS
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMediaUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files) {
-      const urls = Array.from(files).map((f) => URL.createObjectURL(f));
-      setNewPost({ ...newPost, media: [...newPost.media, ...urls] });
-    }
+    if (!files) return;
+    const urls = Array.from(files).map((f) => URL.createObjectURL(f));
+    setNewPost({ ...newPost, media: [...newPost.media, ...urls] });
   };
 
   const handleAddPost = () => {
@@ -169,9 +173,7 @@ export default function ConstructionProgress() {
 
   const handleLike = (id: number) => {
     setPosts((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, likes: p.likes + 1 } : p
-      )
+      prev.map((p) => (p.id === id ? { ...p, likes: p.likes + 1 } : p))
     );
   };
 
@@ -201,7 +203,7 @@ export default function ConstructionProgress() {
       {/* HEADER */}
       <div className="flex flex-col items-center mb-8 text-center relative">
         <h1 className="text-6xl font-bold mb-1" style={{ fontFamily: "MyFont2" }}>
-          Community 
+          Community
         </h1>
         <p className="text-gray-600 text-sm">Stay updated on construction progress!</p>
 
@@ -250,6 +252,31 @@ export default function ConstructionProgress() {
         </div>
       )}
 
+      {/* FEATURED VIDEO PLAYER */}
+      <div className="max-w-4xl mx-auto mb-12 relative rounded-xl overflow-hidden shadow-lg">
+        <video
+          ref={videoRef}
+          src="/video.mp4"
+          className="w-full h-[300px] object-cover bg-black"
+          muted={isMuted}
+        />
+        {/* VIDEO FOOTER CONTROLS */}
+        <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 flex justify-center items-center gap-6 py-2">
+          <button onClick={togglePlay} className="text-white">
+            {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
+          </button>
+          <button onClick={restartVideo} className="text-white">
+            <RotateCcw className="w-6 h-6" />
+          </button>
+          <button onClick={toggleMute} className="text-white">
+            {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume className="w-6 h-6" />}
+          </button>
+          <button onClick={toggleFullScreen} className="text-white">
+            <Maximize2 className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+
       {/* ADMIN CREATE/EDIT */}
       {isAdmin && (
         <div className="bg-gray-50 border border-gray-300 rounded-2xl p-5 mb-12 shadow-md max-w-4xl mx-auto">
@@ -271,29 +298,37 @@ export default function ConstructionProgress() {
           />
           {newPost.media.length > 0 && (
             <div className="flex gap-3 flex-wrap mt-3">
-              {newPost.media.map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  alt="preview"
-                  className="w-24 h-24 rounded-lg object-cover border border-gray-300"
-                />
-              ))}
+              {newPost.media.map((m, i) =>
+                m.endsWith(".mp4") ? (
+                  <video
+                    key={i}
+                    src={m}
+                    className="w-24 h-24 object-cover rounded-lg border border-gray-300"
+                    controls
+                  />
+                ) : (
+                  <img
+                    key={i}
+                    src={m}
+                    alt="preview"
+                    className="w-24 h-24 object-cover rounded-lg border border-gray-300"
+                  />
+                )
+              )}
             </div>
           )}
           <div className="flex justify-between items-center mt-4">
             <label className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black">
               <ImageIcon className="w-5 h-5" />
-              <span className="text-sm">Add Images</span>
+              <span className="text-sm">Add Media</span>
               <input
                 type="file"
                 multiple
                 accept="image/*,video/*"
                 className="hidden"
-                onChange={handleImageUpload}
+                onChange={handleMediaUpload}
               />
             </label>
-
             {editingPostId ? (
               <div className="flex gap-3">
                 <button
@@ -345,7 +380,6 @@ export default function ConstructionProgress() {
             <p className="text-gray-500 text-sm mb-3">{post.timestamp}</p>
             <p className="text-gray-700 mb-4">{post.content}</p>
 
-            {/* Horizontal Scroll Media */}
             <div className="flex overflow-x-auto gap-4 pb-2 scroll-smooth snap-x snap-mandatory">
               {post.media.map((m, i) =>
                 m.endsWith(".mp4") ? (
@@ -366,7 +400,6 @@ export default function ConstructionProgress() {
               )}
             </div>
 
-            {/* Like & Share */}
             <div className="flex gap-6 mt-4 text-gray-600">
               <motion.button
                 whileTap={{ scale: 1.4 }}
