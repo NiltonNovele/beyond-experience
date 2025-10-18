@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import { motion } from "framer-motion";
 import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
-import Link from "next/link";
 
 // Example verse type
 interface Verse {
@@ -87,69 +87,114 @@ export default function HomePage() {
     setCurrentVerse(random);
   };
 
-  return (
-    <div className="relative flex flex-col items-center justify-between min-h-screen bg-white text-black px-6 py-8">
-      {/* Navbar / User button */}
-      <SignedIn>
-        {/* <div className="absolute top-4 right-4 flex items-center gap-3">
-          <Link
-            href="/profile"
-            className="text-sm font-medium text-gray-700 hover:text-black underline"
-          >
-            View Profile
-          </Link>
-          <UserButton afterSignOutUrl="/" />
-        </div> */}
-      </SignedIn>
+   return (
+    <div className="relative flex flex-col items-center justify-between min-h-screen bg-gradient-to-b from-white via-gray-50 to-gray-100 text-gray-900 px-6 py-10 font-[Poppins]">
+      {/* Custom Google Fonts */}
+      <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet"
+      />
 
       {/* Main Section */}
-      <main className="flex flex-col items-center text-center mt-12 mb-12 max-w-xl">
-        <h2 className="text-xl italic mb-2 text-gray-700">Welcome to</h2>
-        <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-6 text-black">beyond</h1>
-        <p className="text-gray-600 leading-relaxed mb-12 text-lg md:text-xl">
+      <main className="flex flex-col items-center text-center mt-10 mb-12 max-w-xl">
+        <motion.h2
+          className="text-4xl mb-2 text-gray-700"
+          style={{ fontFamily: "MyFont" }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          Welcome to
+        </motion.h2>
+
+        <motion.img
+          src="/Beyond Logo - Login Page.png"
+          alt="Beyond Logo"
+          className="object-contain w-56 h-56 mb-6 drop-shadow-md"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        />
+
+        <motion.p
+          className="text-gray-600 leading-relaxed mb-10 text-lg md:text-xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
           Church on a Mission <br />
-          Christ at the Centre <br />
+          <span className="text-gray-800 font-medium">Christ at the Centre</span> <br />
           Community at Heart <br />
           Generosity in Action
-        </p>
+        </motion.p>
 
-        {/* Random Bible Verse Section */}
-        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-md w-full">
-          <h3 className="text-lg font-semibold mb-2 text-gray-800">📖 Random Bible Verse</h3>
-          <p className="text-gray-700 italic mb-4 text-base md:text-lg">"{currentVerse.text}"</p>
-          <p className="text-gray-500 mb-4 text-sm md:text-base font-medium">— {currentVerse.reference}</p>
+        {/* Bible Verse Section */}
+        <motion.div
+          className="bg-white border border-gray-200 rounded-2xl p-6 shadow-xl w-full backdrop-blur-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3 className="text-lg font-semibold mb-3 text-gray-800 flex items-center justify-center gap-2">
+            📖 <span>Bible Verse of the Moment</span>
+          </h3>
+
+          <p className="text-gray-700 italic mb-3 text-base md:text-lg leading-relaxed">
+            “{currentVerse.text}”
+          </p>
+          <p className="text-gray-500 mb-5 text-sm md:text-base font-medium">
+            — {currentVerse.reference}
+          </p>
+
           <button
             onClick={getRandomVerse}
-            className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition text-sm md:text-base"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all text-sm md:text-base font-medium shadow-md hover:shadow-lg"
           >
             Show Another Verse
           </button>
-        </div>
+        </motion.div>
       </main>
 
       {/* Social Links */}
-      <footer className="flex flex-col items-center gap-6 mb-4">
+      <footer className="flex flex-col items-center gap-6 mb-6">
         <div className="flex gap-6">
-          <a href="https://www.instagram.com/beyondexperience_?igsh=MTljaDU1MDY2a2xieQ==" aria-label="Instagram">
-            <FaInstagram className="w-6 h-6 hover:text-gray-600 transition-transform transform hover:scale-110" />
+          <a
+            href="https://www.instagram.com/beyondexperience_?igsh=MTljaDU1MDY2a2xieQ=="
+            aria-label="Instagram"
+            className="hover:text-gray-700 transform hover:scale-110 transition-all"
+          >
+            <FaInstagram className="w-7 h-7" />
           </a>
-          <a href="https://www.tiktok.com/@beyondexperience_?_t=ZS-8yypDgdzo5F&_r=1&fbclid=PAZnRzaANXtU9leHRuA2FlbQIxMQABp5ytfVaxdhCD3O1aCarYG7JUAhj_uoOo9OtcG_kk5yTznpjyIreF7un9m5mF_aem_21O3dT35zZG2C5eoERSXMg" aria-label="TikTok">
-            <FaTiktok className="w-6 h-6 hover:text-gray-600 transition-transform transform hover:scale-110" />
+          <a
+            href="https://www.tiktok.com/@beyondexperience_?_t=ZS-8yypDgdzo5F&_r=1"
+            aria-label="TikTok"
+            className="hover:text-gray-700 transform hover:scale-110 transition-all"
+          >
+            <FaTiktok className="w-7 h-7" />
           </a>
-          <a href="https://m.youtube.com/@beyondonlive?fbclid=PARlRTSANXtWJleHRuA2FlbQIxMQABpwd1h6E2Lx8smyAKb6sJAiiBpIpRJqMuAhuG4z6r6O_HtTRh56sJ6VRcKCl4_aem_W-0LySA_IqUd9lZA5o-VVg" aria-label="YouTube">
-            <FaYoutube className="w-6 h-6 hover:text-gray-600 transition-transform transform hover:scale-110" />
+          <a
+            href="https://m.youtube.com/@beyondonlive"
+            aria-label="YouTube"
+            className="hover:text-gray-700 transform hover:scale-110 transition-all"
+          >
+            <FaYoutube className="w-7 h-7" />
           </a>
         </div>
 
-        {/* If not signed in, show button */}
+        {/* Sign In Button */}
         <SignedOut>
-          <div className="mt-4">
+          <motion.div
+            className="mt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
             <SignInButton>
-              <button className="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition text-sm md:text-base">
+              <button className="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition-all text-sm md:text-base font-medium shadow-md hover:shadow-xl">
                 Get Started
               </button>
             </SignInButton>
-          </div>
+          </motion.div>
         </SignedOut>
       </footer>
     </div>

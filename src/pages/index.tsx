@@ -36,7 +36,7 @@ export default function SignInPage() {
       <SignedOut>
         {/* Logo Section */}
         <div className="mb-10 flex flex-col items-center">
-          <div className="rounded-full w-48 h-48 overflow-hidden flex items-center justify-center border-4 border-black shadow-lg">
+          <div className="rounded-full w-48 h-48 overflow-hidden flex items-center justify-center border-4 border-white shadow-lg">
             <img
               src="/beyond.png"
               alt="Beyond Logo"
@@ -70,7 +70,7 @@ export default function SignInPage() {
 
         {/* Optional Footer */}
         <p className="mt-6 text-gray-500 text-sm text-center">
-          © 2025 Beyond. All rights reserved. Developed by{" "}
+          © 2025 Beyond. All rights reserved.<br></br> Developed by{" "}
           <a
             href="https://synctechx.com"
             target="_blank"

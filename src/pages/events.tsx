@@ -1,5 +1,3 @@
-// pages/events.tsx
-
 import React, { useState } from 'react'
 import Head from 'next/head'
 import { BsCalendar2Event, BsFillPersonFill } from 'react-icons/bs'
@@ -16,10 +14,10 @@ interface Event {
 
 const eventsData: Event[] = [
   {
-    title: "Beyond On Stanley",
-    image: "/images/beyond-on-stanley.jpg",
-    description: "Beyond On Stanley Announcement Service",
-    date: "Sunday, 3 November",
+    title: "Beyond On Stanley Launch",
+    image: "/event2.png",
+    description: "Beyond On Stanley Launch",
+    date: "Sunday, 2 November",
     time: "7pm",
     attendees: [],
   },
@@ -33,6 +31,8 @@ const eventsData: Event[] = [
   }
 ]
 
+const ADMIN_PIN = "0101" // Change this to your desired 4-digit PIN
+
 const EventsPage = () => {
   const [events, setEvents] = useState<Event[]>(eventsData)
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
@@ -44,7 +44,10 @@ const EventsPage = () => {
     setNewAttendee("")
   }
 
-  const handleCloseModal = () => setSelectedEvent(null)
+  const handleCloseModal = () => {
+    setSelectedEvent(null)
+    setIsAdminView(false) // reset admin mode when closing
+  }
 
   const handleAddAttendee = () => {
     if (!newAttendee.trim() || !selectedEvent) return
@@ -61,6 +64,19 @@ const EventsPage = () => {
     setNewAttendee("")
   }
 
+  const handleToggleAdmin = () => {
+    if (!isAdminView) {
+      const pin = prompt("Enter 4-digit admin PIN:")
+      if (pin === ADMIN_PIN) {
+        setIsAdminView(true)
+      } else {
+        alert("Incorrect PIN ❌")
+      }
+    } else {
+      setIsAdminView(false)
+    }
+  }
+
   return (
     <>
       <Head>
@@ -70,7 +86,7 @@ const EventsPage = () => {
         <div className="w-full max-w-2xl">
           {/* Header */}
           <div className="flex items-center justify-between mb-6 relative">
-            <h1 className="text-4xl font-bold text-center w-full">Events</h1>
+            <h1 className="text-6xl font-bold text-center w-full" style={{ fontFamily: "MyFont2" }}>Events</h1>
             <button className="absolute right-0 top-0 mt-4 mr-4">
               <div className="space-y-1">
                 <span className="block w-6 h-0.5 bg-black"></span>
@@ -149,26 +165,41 @@ const EventsPage = () => {
                 </div>
               </div>
 
-              {/* Attendee List */}
+              {/* Attendee List (PIN-protected) */}
               <div className="mb-4">
                 <h3 className="font-semibold mb-2 flex items-center justify-between">
-                  Attendees
+                  <span>Attendees</span>
                   <button
-                    onClick={() => setIsAdminView(!isAdminView)}
-                    className="text-gray-400 hover:text-gray-700 flex items-center space-x-1"
+                    onClick={handleToggleAdmin}
+                    className={`flex items-center space-x-1 px-2 py-1 rounded-lg text-sm transition ${
+                      isAdminView
+                        ? "bg-gray-200 text-gray-800"
+                        : "text-gray-400 hover:text-gray-700"
+                    }`}
                   >
-                    <BsFillPersonFill /> <span className="text-sm">Admin View</span>
+                    <BsFillPersonFill /> <span>Admin View</span>
                   </button>
                 </h3>
-                <ul className="max-h-40 overflow-y-auto space-y-1">
-                  {selectedEvent.attendees?.map((att, i) => (
-                    <li key={i} className="bg-gray-100 px-3 py-1 rounded-lg flex justify-between items-center">
-                      {att}
-                      {isAdminView && <BsFillPersonFill className="text-gray-400 ml-2" />}
-                    </li>
-                  ))}
-                  {!selectedEvent.attendees?.length && <li className="text-gray-400 text-sm">No attendees yet</li>}
-                </ul>
+
+                {isAdminView ? (
+                  <ul className="max-h-40 overflow-y-auto space-y-1">
+                    {selectedEvent.attendees?.length ? (
+                      selectedEvent.attendees.map((att, i) => (
+                        <li
+                          key={i}
+                          className="bg-gray-100 px-3 py-1 rounded-lg flex justify-between items-center"
+                        >
+                          {att}
+                          <BsFillPersonFill className="text-gray-400 ml-2" />
+                        </li>
+                      ))
+                    ) : (
+                      <li className="text-gray-400 text-sm">No attendees yet</li>
+                    )}
+                  </ul>
+                ) : (
+                  <p className="text-gray-400 text-sm italic">Admin view disabled</p>
+                )}
               </div>
             </div>
           </div>

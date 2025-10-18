@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-// If you have an icon component for the Credit Card, import it here.
-import { FaCreditCard } from "react-icons/fa"; // Example of a possible icon library
+import { FaCreditCard } from "react-icons/fa";
 
 export default function Give() {
   const donationInfo = {
@@ -10,8 +9,8 @@ export default function Give() {
     accountNumber: "63043448950",
     branchCode: "210835",
     accountHolder: "Beyond Experience International NPC",
-    qrCode: "/qr.png", // Replace with your actual SnapScan QR code image
-    snapScanLink: "https://www.snapscan.co.za", // Add the SnapScan link here (or remove this if unnecessary)
+    qrCode: "/qr.png",
+    snapScanLink: "https://pos.snapscan.io/qr/F-kNZsXV",
   };
 
   return (
@@ -33,18 +32,20 @@ export default function Give() {
           href={donationInfo.snapScanLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center p-8 rounded-3xl bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-2xl hover:scale-105 transition-transform"
+          className="flex flex-col items-center justify-center p-6 rounded-2xl bg-gray-50 border border-gray-200 text-black shadow-sm hover:shadow-md hover:scale-105 transition-transform"
         >
-          <FaCreditCard className="w-10 h-10 mb-4" /> {/* Replace with appropriate icon */}
-          <h2 className="text-2xl font-semibold mb-2 text-center">Donate via SnapScan</h2>
-          <p className="text-center text-sm">Quick & easy. Open the link to donate instantly.</p>
+          <FaCreditCard className="w-8 h-8 mb-3" />
+          <h2 className="text-xl font-semibold mb-1 text-center">Donate via SnapScan</h2>
+          <p className="text-center text-sm text-gray-600">
+            Quick & easy. Open the link to donate instantly.
+          </p>
         </a>
       </div>
 
       {/* SnapScan QR Code Section */}
-      <section className="flex flex-col items-center mb-10">
-        <h2 className="text-2xl font-bold mb-4 tracking-tight">Snapscan</h2>
-        <div className="bg-white border border-black rounded-lg p-4 flex flex-col items-center shadow-sm">
+      <section className="flex flex-col items-center my-10">
+        <h2 className="text-2xl font-bold mb-4 tracking-tight">SnapScan</h2>
+        <div className="bg-white border border-gray-300 rounded-lg p-4 flex flex-col items-center shadow-sm">
           <Image
             src={donationInfo.qrCode}
             alt="SnapScan QR Code"
