@@ -68,18 +68,7 @@ export default function SignInPage() {
           afterSignUpUrl="/create-profile"
         />
 
-        {/* Optional Footer */}
-        <p className="mt-6 text-gray-500 text-sm text-center">
-          © 2025 Beyond. All rights reserved.<br></br> Developed by{" "}
-          <a
-            href="https://synctechx.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            SyncTechX
-          </a>
-        </p>
+       
       </SignedOut>
     </div>
   );
