@@ -16,11 +16,11 @@ export default function Visit() {
       </div>
 
       <div className="flex flex-col items-center space-y-10 w-full max-w-md">
-        {/* Location 1 */}
+        {/* Location 1 - Updated Iframe */}
         <section className="w-full border border-black rounded-2xl overflow-hidden shadow-sm bg-gray-50">
           <div className="relative w-full h-56">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2914.032489186284!2d18.413920410741156!3d-33.925260973093295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc67657a924e57%3A0xb0ab407c9fa0b3d6!2sLong%20Street%20Backpackers!5e1!3m2!1sen!2sza!4v1760708580912!5m2!1sen!2sza"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2813.7009512800623!2d18.471125158816577!3d-33.98322142639045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc42d77e02d219%3A0xe1864d320c705a0c!2s11%20Stanley%20Rd%2C%20Claremont%2C%20Cape%20Town%2C%207708!5e1!3m2!1sen!2sza!4v1760803115864!5m2!1sen!2sza"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -30,10 +30,10 @@ export default function Visit() {
             ></iframe>
           </div>
           <div className="p-4 text-center">
-            <h2 className="font-bold text-lg tracking-tight">Beyond On Long</h2>
-            <p className="text-sm text-gray-700 mt-1">9am | 209 Long Street</p>
+            <h2 className="font-bold text-lg tracking-tight">Beyond On Stanley</h2>
+            <p className="text-sm text-gray-700 mt-1">9am | 11 Stanley Rd, Claremont</p>
             <Link
-              href="https://www.google.com/maps/dir/?api=1&destination=209+Long+Street"
+              href="https://www.google.com/maps/dir/?api=1&destination=11+Stanley+Rd,+Claremont"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 inline-block text-sm font-semibold text-blue-700 underline"

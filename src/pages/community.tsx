@@ -32,84 +32,10 @@ interface Post {
 const ADMIN_PIN = "0101";
 
 export default function ConstructionProgress() {
-  const [posts, setPosts] = useState<Post[]>([
-    {
-      id: 1,
-      title: "🎉",
-      content: "",
-      media: [
-        "/images/img-1.jpg",
-        "/images/img-2.jpg",
-        "/images/img-3.mp4",
-        "/images/img-4.jpg",
-        "/images/img-17.jpg",
-        "/images/img-18.jpg",
-      ],
-      likes: 45,
-      timestamp: "2 weeks ago",
-    },
-    {
-      id: 2,
-      title: "🚧",
-      content: "",
-      media: [
-        "/images/img-5.jpg",
-        "/images/img-6.mp4",
-        "/images/img-7.jpg",
-        "/images/img-8.jpg",
-        "/images/img-19.jpg",
-        "/images/img-20.jpg",
-      ],
-      likes: 60,
-      timestamp: "1 week ago",
-    },
-    {
-      id: 3,
-      title: "🧱",
-      content: "",
-      media: [
-        "/images/img-9.jpg",
-        "/images/img-10.jpg",
-        "/images/img-11.jpg",
-        "/images/img-12.jpg",
-        "/images/img-21.jpg",
-      ],
-      likes: 74,
-      timestamp: "3 days ago",
-    },
-    {
-      id: 4,
-      title: "🏗️",
-      content: "",
-      media: [
-        "/images/img-13.jpg",
-        "/images/img-14.jpg",
-        "/images/img-15.jpg",
-        "/images/img-16.jpg",
-        "/images/img-22.jpg",
-      ],
-      likes: 102,
-      timestamp: "Today",
-    },
-  ]);
-
-  const [newPost, setNewPost] = useState({
-    title: "",
-    content: "",
-    media: [] as string[],
-  });
-
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showPinPrompt, setShowPinPrompt] = useState(false);
-  const [pinInput, setPinInput] = useState("");
-
-  const [editingPostId, setEditingPostId] = useState<number | null>(null);
-
-  // VIDEO CONTROLS
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (videoRef.current.paused) {
@@ -140,7 +66,56 @@ export default function ConstructionProgress() {
     else videoRef.current.requestFullscreen();
   };
 
-  // ADMIN LOGIN
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showPinPrompt, setShowPinPrompt] = useState(false);
+  const [pinInput, setPinInput] = useState("");
+
+  const [editingPostId, setEditingPostId] = useState<number | null>(null);
+  const [newPost, setNewPost] = useState({ title: "", content: "", media: [] as string[] });
+
+  const posts: Post[] = [
+    {
+      id: 1,
+      title: "",
+      content: "",
+      media: [
+      "/batch2/1.jpg",
+      "/batch2/2.jpg",
+      "/batch2/3.jpg",
+      "/batch2/4.jpg",
+      "/batch2/5.mp4",
+      "/batch2/6.jpg",
+      "/batch2/7.jpg",
+      "/batch2/8.jpg",
+      "/batch2/9.jpg",
+      "/batch2/10.jpg",
+      "/batch2/11.jpg",
+      "/batch2/12.jpg",
+      ],
+      likes: 45,
+      timestamp: "2 weeks ago",
+    },
+    {
+      id: 2,
+      title: "",
+      content: "",
+      media: [
+      "/batch1/1.jpg",
+      "/batch1/2.jpg",
+      "/batch1/3.jpg",
+      "/batch1/4.jpg",
+      "/batch1/5.jpg",
+      "/batch1/6.jpg",
+      "/batch1/7.mp4",
+      "/batch1/8.jpg",
+      "/batch1/9.jpg",
+      "/batch1/10.jpg",
+      ],
+      likes: 60,
+      timestamp: "1 week ago",
+    },
+  ];
+
   const handleAdminLogin = () => {
     if (pinInput === ADMIN_PIN) {
       setIsAdmin(true);
@@ -149,7 +124,12 @@ export default function ConstructionProgress() {
     } else alert("Incorrect PIN");
   };
 
-  // POST ACTIONS
+  const handleLike = (id: number) => {
+    const postIndex = posts.findIndex((p) => p.id === id);
+    if (postIndex === -1) return;
+    posts[postIndex].likes += 1;
+  };
+
   const handleMediaUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files) return;
@@ -167,45 +147,18 @@ export default function ConstructionProgress() {
       likes: 0,
       timestamp: "Just now",
     };
-    setPosts([newEntry, ...posts]);
-    setNewPost({ title: "", content: "", media: [] });
-  };
-
-  const handleLike = (id: number) => {
-    setPosts((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, likes: p.likes + 1 } : p))
-    );
-  };
-
-  const handleEditPost = (id: number) => {
-    const post = posts.find((p) => p.id === id);
-    if (!post) return;
-    setNewPost({ title: post.title, content: post.content, media: post.media });
-    setEditingPostId(id);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleSaveEdit = () => {
-    if (!editingPostId) return;
-    setPosts((prev) =>
-      prev.map((p) =>
-        p.id === editingPostId
-          ? { ...p, title: newPost.title, content: newPost.content, media: newPost.media }
-          : p
-      )
-    );
-    setEditingPostId(null);
+    posts.unshift(newEntry);
     setNewPost({ title: "", content: "", media: [] });
   };
 
   return (
-    <div className="bg-white text-black min-h-screen px-4 sm:px-8 py-8">
+    <div className="bg-gray-50 min-h-screen px-4 sm:px-8 py-8">
       {/* HEADER */}
-      <div className="flex flex-col items-center mb-8 text-center relative">
-        <h1 className="text-6xl font-bold mb-1" style={{ fontFamily: "MyFont2" }}>
+      <div className="text-center mb-10 relative">
+        <h1 className="text-5xl sm:text-6xl font-bold mb-2" style={{ fontFamily: "MyFont2" }}>
           Community
         </h1>
-        <p className="text-gray-600 text-sm">Stay updated on construction progress!</p>
+        <p className="text-gray-600 text-sm sm:text-base">Stay on #ThePulse of what is happening in the life of Beyond!</p>
 
         {!isAdmin ? (
           <button
@@ -252,16 +205,15 @@ export default function ConstructionProgress() {
         </div>
       )}
 
-      {/* FEATURED VIDEO PLAYER */}
+      {/* FEATURED VIDEO */}
       <div className="max-w-4xl mx-auto mb-12 relative rounded-xl overflow-hidden shadow-lg">
         <video
           ref={videoRef}
           src="/video.mp4"
-          className="w-full h-[300px] object-cover bg-black"
+          className="w-full h-[320px] sm:h-[400px] object-cover bg-black rounded-xl"
           muted={isMuted}
         />
-        {/* VIDEO FOOTER CONTROLS */}
-        <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 flex justify-center items-center gap-6 py-2">
+        <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 flex justify-center items-center gap-6 py-2 rounded-b-xl">
           <button onClick={togglePlay} className="text-white">
             {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
           </button>
@@ -277,102 +229,20 @@ export default function ConstructionProgress() {
         </div>
       </div>
 
-      {/* ADMIN CREATE/EDIT */}
-      {isAdmin && (
-        <div className="bg-gray-50 border border-gray-300 rounded-2xl p-5 mb-12 shadow-md max-w-4xl mx-auto">
-          <h2 className="text-xl font-bold mb-4">
-            {editingPostId ? "Edit Post" : "Create New Post"}
-          </h2>
-          <input
-            type="text"
-            placeholder="Post title..."
-            value={newPost.title}
-            onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
-            className="w-full bg-transparent border-b border-gray-300 focus:border-blue-500 outline-none pb-2 text-black text-lg font-semibold mb-3"
-          />
-          <textarea
-            placeholder="What's happening?"
-            value={newPost.content}
-            onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
-            className="w-full bg-transparent text-black outline-none resize-none min-h-[80px]"
-          />
-          {newPost.media.length > 0 && (
-            <div className="flex gap-3 flex-wrap mt-3">
-              {newPost.media.map((m, i) =>
-                m.endsWith(".mp4") ? (
-                  <video
-                    key={i}
-                    src={m}
-                    className="w-24 h-24 object-cover rounded-lg border border-gray-300"
-                    controls
-                  />
-                ) : (
-                  <img
-                    key={i}
-                    src={m}
-                    alt="preview"
-                    className="w-24 h-24 object-cover rounded-lg border border-gray-300"
-                  />
-                )
-              )}
-            </div>
-          )}
-          <div className="flex justify-between items-center mt-4">
-            <label className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black">
-              <ImageIcon className="w-5 h-5" />
-              <span className="text-sm">Add Media</span>
-              <input
-                type="file"
-                multiple
-                accept="image/*,video/*"
-                className="hidden"
-                onChange={handleMediaUpload}
-              />
-            </label>
-            {editingPostId ? (
-              <div className="flex gap-3">
-                <button
-                  onClick={handleSaveEdit}
-                  className="flex items-center gap-2 bg-green-600 hover:bg-green-700 px-5 py-2 rounded-xl font-semibold text-sm text-white"
-                >
-                  <Check className="w-4 h-4" /> Save
-                </button>
-                <button
-                  onClick={() => {
-                    setEditingPostId(null);
-                    setNewPost({ title: "", content: "", media: [] });
-                  }}
-                  className="flex items-center gap-2 bg-gray-300 hover:bg-gray-400 px-5 py-2 rounded-xl font-semibold text-sm"
-                >
-                  <X className="w-4 h-4" /> Cancel
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={handleAddPost}
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-xl font-semibold text-sm text-white"
-              >
-                <Send className="w-4 h-4" /> Post Update
-              </button>
-            )}
-          </div>
-        </div>
-      )}
+      <h2 className="text-xl font-bold">Beyond On Stanley Loading...</h2>
+      <br></br>
 
       {/* POSTS FEED */}
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto flex flex-col gap-10">
         {posts.map((post) => (
           <div
             key={post.id}
-            className="bg-gray-50 border border-gray-200 rounded-2xl p-5 shadow-md mb-10"
+            className="bg-white border border-gray-200 rounded-2xl p-6 shadow-md"
           >
             <div className="flex justify-between items-center mb-2">
-              <h2 className="text-lg font-bold">{post.title}</h2>
+              <h2 className="text-xl font-bold">{post.title}</h2>
               {isAdmin && (
-                <button
-                  onClick={() => handleEditPost(post.id)}
-                  className="flex items-center gap-1 text-sm text-gray-500 hover:text-blue-600"
-                >
+                <button className="flex items-center gap-1 text-sm text-gray-500 hover:text-blue-600">
                   <Edit className="w-4 h-4" /> Edit
                 </button>
               )}

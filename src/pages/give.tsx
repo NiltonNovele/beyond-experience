@@ -17,7 +17,7 @@ export default function Give() {
     <main className="min-h-screen bg-white flex flex-col items-center px-6 py-12 text-black">
       {/* Header */}
       <header className="text-center mb-10">
-        <h1 className="text-5xl font-extrabold mb-4 tracking-tight" style={{ fontFamily: "MyFont2" }}>
+        <h1 className="text-6xl font-extrabold mb-4 tracking-tight" style={{ fontFamily: "MyFont2" }}>
           Online Giving
         </h1>
         <p className="text-gray-700 text-base max-w-sm mx-auto">
@@ -35,10 +35,7 @@ export default function Give() {
           className="flex flex-col items-center justify-center p-6 rounded-2xl bg-gray-50 border border-gray-200 text-black shadow-sm hover:shadow-md hover:scale-105 transition-transform"
         >
           <FaCreditCard className="w-8 h-8 mb-3" />
-          <h2 className="text-xl font-semibold mb-1 text-center">Donate via SnapScan</h2>
-          <p className="text-center text-sm text-gray-600">
-            Quick & easy. Open the link to donate instantly.
-          </p>
+          <h2 className="text-xl font-semibold mb-1 text-center">Tap to give via SnapScan</h2>
         </a>
       </div>
 

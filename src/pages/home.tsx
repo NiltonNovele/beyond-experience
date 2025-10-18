@@ -136,7 +136,7 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
         >
           <h3 className="text-lg font-semibold mb-3 text-gray-800 flex items-center justify-center gap-2">
-            📖 <span>Bible Verse of the Moment</span>
+            📖 <span>Verse of the day</span>
           </h3>
 
           <p className="text-gray-700 italic mb-3 text-base md:text-lg leading-relaxed">

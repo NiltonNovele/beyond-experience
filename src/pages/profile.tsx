@@ -25,8 +25,8 @@ export default function ProfilePage() {
       <SignedIn>
         <div className="w-full max-w-xs bg-white flex flex-col items-center p-6 rounded-3xl shadow-md border border-gray-200">
           {/* Header */}
-          <h1 className="text-4xl font-extrabold mb-6 text-center font-serif" style={{ fontFamily: "MyFont2" }}>
-            Profile
+          <h1 className="text-6xl font-extrabold mb-6 text-center font-serif" style={{ fontFamily: "MyFont2" }}>
+            My Profile
           </h1>
 
           {/* Avatar */}

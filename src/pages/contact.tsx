@@ -6,7 +6,7 @@ export default function Contact() {
     <main className="min-h-screen flex flex-col items-center justify-between bg-white px-6 py-12 md:py-16 text-black">
       {/* Header */}
       <section className="text-center space-y-4 max-w-lg">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "MyFont2" }}>
+        <h1 className="text-6xl md:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "MyFont2" }}>
           Get in touch
         </h1>
         <p className="text-gray-700 text-sm md:text-base leading-relaxed">
@@ -17,7 +17,7 @@ export default function Contact() {
 
       {/* Contact Form */}
       <form
-        action="https://formsubmit.co/your@email.com"  // Updated action URL
+        action="https://formsubmit.co/beyondonmission@gmail.com"  // Updated action URL
         method="POST"
         className="mt-10 w-full max-w-md bg-gray-50 border border-gray-200 shadow-md rounded-2xl p-6 space-y-5"
       >

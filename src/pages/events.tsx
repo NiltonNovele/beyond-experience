@@ -15,7 +15,7 @@ interface Event {
 const eventsData: Event[] = [
   {
     title: "Beyond On Stanley Launch",
-    image: "/event2.png",
+    image: "/event2.jpg",
     description: "Beyond On Stanley Launch",
     date: "Sunday, 2 November",
     time: "7pm",
@@ -25,8 +25,8 @@ const eventsData: Event[] = [
     title: "Grit & Grace Weekend Experience",
     image: "/ticket.jpeg",
     description: "Grit & Grace Weekend Experience",
-    date: "Saturday, 8 November",
-    time: "7pm",
+    date: "Friday, 7 Novembe @ 7pm | Saturday, 8 November @ 10am",
+    time: "",
     attendees: [],
   }
 ]
@@ -79,21 +79,11 @@ const EventsPage = () => {
 
   return (
     <>
-      <Head>
-        <title>Events</title>
-      </Head>
       <main className="min-h-screen bg-gray-50 flex justify-center p-4">
         <div className="w-full max-w-2xl">
           {/* Header */}
           <div className="flex items-center justify-between mb-6 relative">
             <h1 className="text-6xl font-bold text-center w-full" style={{ fontFamily: "MyFont2" }}>Events</h1>
-            <button className="absolute right-0 top-0 mt-4 mr-4">
-              <div className="space-y-1">
-                <span className="block w-6 h-0.5 bg-black"></span>
-                <span className="block w-6 h-0.5 bg-black"></span>
-                <span className="block w-6 h-0.5 bg-black"></span>
-              </div>
-            </button>
           </div>
 
           {/* Description */}
@@ -137,7 +127,7 @@ const EventsPage = () => {
                 <AiOutlineClose size={24} />
               </button>
 
-              <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-56 object-cover rounded-lg mb-4" />
+              <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-80 object-cover rounded-lg mb-4" />
               <h2 className="text-2xl font-bold mb-2">{selectedEvent.title}</h2>
               <p className="text-gray-700 mb-4">{selectedEvent.description}</p>
               <div className="flex items-center text-gray-500 mb-4 text-sm">
