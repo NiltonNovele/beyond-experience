@@ -18,14 +18,14 @@ const eventsData: Event[] = [
     image: "/event2.jpg",
     description: "Beyond On Stanley Launch",
     date: "Sunday, 2 November",
-    time: "7pm",
+    time: "9am",
     attendees: [],
   },
   {
     title: "Grit & Grace Weekend Experience",
     image: "/ticket.jpeg",
     description: "Grit & Grace Weekend Experience",
-    date: "Friday, 7 Novembe @ 7pm | Saturday, 8 November @ 10am",
+    date: "Friday, 7 November @ 7pm | Saturday, 8 November @ 9am",
     time: "",
     attendees: [],
   }

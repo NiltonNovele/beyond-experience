@@ -11,7 +11,7 @@ export default function Contact() {
         </h1>
         <p className="text-gray-700 text-sm md:text-base leading-relaxed">
           Whether you have got a question, a testimony to share, or just want to say hi —
-          we wouldd love to hear from you.
+          we would love to hear from you.
         </p>
       </section>
 

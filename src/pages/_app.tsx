@@ -13,7 +13,7 @@ import Navbar from "@/components/Navbar"; // 👈 We'll create this next
 import Footer from "@/components/Footer";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-  const publicPages = ["/"]; // 👈 Only "/" is public (sign-in)
+  const publicPages = ["/"]; 
 
   const isPublicPage = publicPages.includes(router.pathname);
 
