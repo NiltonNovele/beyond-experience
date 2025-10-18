@@ -128,7 +128,6 @@ export default function HomePage() {
           Generosity in Action
         </motion.p>
 
-        {/* Bible Verse Section */}
         <motion.div
           className="bg-white border border-gray-200 rounded-2xl p-6 shadow-xl w-full backdrop-blur-sm"
           initial={{ opacity: 0, y: 20 }}
