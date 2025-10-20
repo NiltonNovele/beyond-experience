@@ -88,7 +88,7 @@ const EventsPage = () => {
 
           {/* Description */}
           <p className="text-center text-sm text-gray-600 mb-8">
-            Explore our upcoming events and join the community. RSVP and bring friends!
+            Find more about our upcoming special events and Growth Track Courses.
           </p>
 
           {/* Events List */}
