@@ -23,7 +23,7 @@ const eventsData: Event[] = [
   },
   {
     title: "Grit & Grace Weekend Experience",
-    image: "/ticket.jpeg",
+    image: "/ticket2.jpeg",
     description: "Grit & Grace Weekend Experience",
     date: "Friday, 7 November @ 7pm | Saturday, 8 November @ 9am",
     time: "",
