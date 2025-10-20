@@ -99,7 +99,7 @@ const EventsPage = () => {
                 onClick={() => handleOpenModal(event)}
                 className="cursor-pointer bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
               >
-                <img src={event.image} alt={event.title} className="w-full h-48 object-cover" />
+                <img src={event.image} alt={event.title} className="w-full h-88 object-cover" />
                 <div className="p-5">
                   <h2 className="text-xl font-semibold mb-2">{event.title}</h2>
                   <p className="text-gray-700">{event.description}</p>
