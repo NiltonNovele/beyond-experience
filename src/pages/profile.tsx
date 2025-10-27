@@ -30,9 +30,17 @@ export default function ProfilePage() {
           </h1>
 
           {/* Avatar */}
-          <div className="text-gray-400 mb-6">
-            <FaUserCircle className="text-[100px]" />
-          </div>
+          <div className="mb-6">
+  {user?.imageUrl ? (
+    <img
+      src={user.imageUrl}
+      alt="Profile"
+      className="w-32 h-32 rounded-full object-cover border"
+    />
+  ) : (
+    <FaUserCircle className="text-[100px] text-gray-400" />
+  )}
+</div>
 
           {/* Input-like display fields */}
           {profile ? (
