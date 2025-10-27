@@ -3,9 +3,6 @@
 import { useState, useRef } from "react";
 import {
   Heart,
-  Share2,
-  Image as ImageIcon,
-  Send,
   Lock,
   Unlock,
   Volume,
@@ -13,10 +10,8 @@ import {
   Play,
   Pause,
   Maximize2,
-  Edit,
-  Check,
-  X,
   RotateCcw,
+  Edit,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -36,6 +31,68 @@ export default function ConstructionProgress() {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // 🧠 Move posts into React state
+  const [posts, setPosts] = useState<Post[]>([
+    {
+      id: 1,
+      title: "",
+      content: "",
+      media: [
+        "/batch3/1.jpg",
+        "/batch3/2.jpg",
+        "/batch3/3.jpg",
+        "/batch3/4.jpg",
+        "/batch3/6.jpg",
+        "/batch3/7.jpg",
+        "/batch3/8.jpg",
+        "/batch3/9.jpg",
+        "/batch3/10.jpg",
+        "/batch3/11.jpg",
+      ],
+      likes: 45,
+      timestamp: "2 days ago",
+    },
+    {
+      id: 2,
+      title: "",
+      content: "",
+      media: [
+        "/batch2/1.jpeg",
+        "/batch2/2.jpeg",
+        "/batch2/3.jpeg",
+        "/batch2/4.jpeg",
+        "/batch2/6.jpeg",
+        "/batch2/7.jpeg",
+        "/batch2/8.jpeg",
+        "/batch2/9.jpeg",
+        "/batch2/10.jpeg",
+        "/batch2/11.jpg",
+        "/batch2/12.jpg",
+      ],
+      likes: 31,
+      timestamp: "1 week ago",
+    },
+    {
+      id: 3,
+      title: "",
+      content: "",
+      media: [
+        "/batch1/1.jpeg",
+        "/batch1/2.jpeg",
+        "/batch1/3.jpeg",
+        "/batch1/4.jpeg",
+        "/batch1/5.jpeg",
+        "/batch1/6.jpeg",
+        "/batch1/8.jpeg",
+        "/batch1/9.jpeg",
+        "/batch1/10.jpeg",
+      ],
+      likes: 60,
+      timestamp: "2 weeks ago",
+    },
+  ]);
+
+  // 🎬 Video controls
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (videoRef.current.paused) {
@@ -66,53 +123,10 @@ export default function ConstructionProgress() {
     else videoRef.current.requestFullscreen();
   };
 
+  // 🔐 Admin logic
   const [isAdmin, setIsAdmin] = useState(false);
   const [showPinPrompt, setShowPinPrompt] = useState(false);
   const [pinInput, setPinInput] = useState("");
-
-  const [editingPostId, setEditingPostId] = useState<number | null>(null);
-  const [newPost, setNewPost] = useState({ title: "", content: "", media: [] as string[] });
-
-  const posts: Post[] = [
-    {
-      id: 1,
-      title: "",
-      content: "",
-      media: [
-      "/batch2/1.jpeg",
-      "/batch2/2.jpeg",
-      "/batch2/3.jpeg",
-      "/batch2/4.jpeg",
-      "/batch2/6.jpeg",
-      "/batch2/7.jpeg",
-      "/batch2/8.jpeg",
-      "/batch2/9.jpeg",
-      "/batch2/10.jpeg",
-      "/batch2/11.jpg",
-      "/batch2/12.jpg",
-      ],
-      likes: 45,
-      timestamp: "2 weeks ago",
-    },
-    {
-      id: 2,
-      title: "",
-      content: "",
-      media: [
-      "/batch1/1.jpeg",
-      "/batch1/2.jpeg",
-      "/batch1/3.jpeg",
-      "/batch1/4.jpeg",
-      "/batch1/5.jpeg",
-      "/batch1/6.jpeg",
-      "/batch1/8.jpeg",
-      "/batch1/9.jpeg",
-      "/batch1/10.jpeg",
-      ],
-      likes: 60,
-      timestamp: "1 week ago",
-    },
-  ];
 
   const handleAdminLogin = () => {
     if (pinInput === ADMIN_PIN) {
@@ -122,41 +136,25 @@ export default function ConstructionProgress() {
     } else alert("Incorrect PIN");
   };
 
+  // ❤️ Like handler (reactive)
   const handleLike = (id: number) => {
-    const postIndex = posts.findIndex((p) => p.id === id);
-    if (postIndex === -1) return;
-    posts[postIndex].likes += 1;
-  };
-
-  const handleMediaUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files) return;
-    const urls = Array.from(files).map((f) => URL.createObjectURL(f));
-    setNewPost({ ...newPost, media: [...newPost.media, ...urls] });
-  };
-
-  const handleAddPost = () => {
-    if (!newPost.title.trim() && !newPost.content.trim()) return;
-    const newEntry: Post = {
-      id: Date.now(),
-      title: newPost.title,
-      content: newPost.content,
-      media: newPost.media,
-      likes: 0,
-      timestamp: "Just now",
-    };
-    posts.unshift(newEntry);
-    setNewPost({ title: "", content: "", media: [] });
+    setPosts((prev) =>
+      prev.map((p) =>
+        p.id === id ? { ...p, likes: p.likes + 1 } : p
+      )
+    );
   };
 
   return (
     <div className="bg-gray-50 min-h-screen px-4 sm:px-8 py-8">
       {/* HEADER */}
       <div className="text-center mb-10 relative">
-        <h1 className="text-5xl sm:text-6xl font-bold mb-2" style={{ fontFamily: "MyFont2" }}>
+        <h1 className="text-6xl font-extrabold mb-6 text-center font-serif" style={{ fontFamily: "MyFont2" }}>
           Community
         </h1>
-        <p className="text-gray-600 text-sm sm:text-base">Stay on #ThePulse of what is happening in the life of Beyond!</p>
+        <p className="text-gray-600 text-sm sm:text-base">
+          Stay on #ThePulse of what is happening in the life of Beyond!
+        </p>
 
         {!isAdmin ? (
           <button
@@ -173,6 +171,7 @@ export default function ConstructionProgress() {
         )}
       </div>
 
+      {/* ADMIN PIN PROMPT */}
       {showPinPrompt && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-2xl shadow-lg w-80">
@@ -206,7 +205,7 @@ export default function ConstructionProgress() {
       <div className="max-w-4xl mx-auto mb-12 relative rounded-xl overflow-hidden shadow-lg">
         <video
           ref={videoRef}
-          src="/video.mov"
+          src="/Community - Video - PIN - NEW DATE.mp4"
           className="w-full h-[320px] sm:h-[400px] object-cover bg-black rounded-xl"
           muted={isMuted}
         />
@@ -227,7 +226,7 @@ export default function ConstructionProgress() {
       </div>
 
       <h2 className="text-xl font-bold">Beyond On Stanley Loading...</h2>
-      <br></br>
+      <br />
 
       {/* POSTS FEED */}
       <div className="max-w-4xl mx-auto flex flex-col gap-10">
@@ -267,29 +266,34 @@ export default function ConstructionProgress() {
               )}
             </div>
 
+            {/* ❤️ Like Button */}
             <div className="flex gap-6 mt-4 text-gray-600">
               <motion.button
-                whileTap={{ scale: 1.4 }}
+                whileTap={{ scale: 1.2 }}
                 onClick={() => handleLike(post.id)}
-                className="flex items-center gap-2 hover:text-pink-600 transition"
+                className="flex items-center gap-2 hover:text-pink-600 transition focus:outline-none"
               >
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                   <motion.div
                     key={post.likes}
-                    initial={{ scale: 0, opacity: 0 }}
+                    initial={{ scale: 0.5, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0, opacity: 0 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    exit={{ scale: 0.5, opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 250 }}
                   >
                     <Heart className="w-5 h-5 text-red-500 fill-red-500" />
                   </motion.div>
                 </AnimatePresence>
-                {post.likes}
+                <motion.span
+                  key={`likes-${post.likes}`}
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {post.likes}
+                </motion.span>
               </motion.button>
-
-              <button className="flex items-center gap-2 hover:text-blue-600 transition">
-                <Share2 className="w-5 h-5" /> Share
-              </button>
             </div>
           </div>
         ))}

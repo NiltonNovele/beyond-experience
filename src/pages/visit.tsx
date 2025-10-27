@@ -7,7 +7,7 @@ export default function Visit() {
     <main className="min-h-screen flex flex-col items-center py-12 px-4 bg-white text-black">
       {/* Header */}
       <div className="text-center mb-10">
-        <h1 className="text-7xl font-extrabold tracking-tight mb-3" style={{ fontFamily: "MyFont2" }}>
+        <h1 className="text-6xl font-extrabold mb-6 text-center font-serif" style={{ fontFamily: "MyFont2" }}>
           Visit Beyond
         </h1>
         <p className="text-gray-700 text-sm">
@@ -15,12 +15,13 @@ export default function Visit() {
         </p>
       </div>
 
+      {/* Locations */}
       <div className="flex flex-col items-center space-y-10 w-full max-w-md">
-        {/* Location 1 - Updated Iframe */}
+        {/* Location 1 */}
         <section className="w-full border border-black rounded-2xl overflow-hidden shadow-sm bg-gray-50">
           <div className="relative w-full h-56">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2813.7009512800623!2d18.471125158816577!3d-33.98322142639045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc42d77e02d219%3A0xe1864d320c705a0c!2s11%20Stanley%20Rd%2C%20Claremont%2C%20Cape%20Town%2C%207708!5e1!3m2!1sen!2sza!4v1760803115864!5m2!1sen!2sza"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2913.76395777464!2d18.465729710741567!3d-33.93310997309031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5d06da2034bb%3A0xcf6a2dac187d8a48!2s11%20Stanley%20Rd%2C%20Observatory%2C%20Cape%20Town%2C%208001!5e1!3m2!1sen!2sza!4v1761600355114!5m2!1sen!2sza"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -31,7 +32,9 @@ export default function Visit() {
           </div>
           <div className="p-4 text-center">
             <h2 className="font-bold text-lg tracking-tight">Beyond On Stanley</h2>
-            <p className="text-sm text-gray-700 mt-1">9am | 11 Stanley Rd, Claremont</p>
+            <p className="text-sm text-gray-700 mt-1">
+              8:30am | 11 Stanley Rd, Observatory
+            </p>
             <Link
               href="https://www.google.com/maps/dir/?api=1&destination=11+Stanley+Rd,+Claremont"
               target="_blank"
@@ -58,7 +61,7 @@ export default function Visit() {
           </div>
           <div className="p-4 text-center">
             <h2 className="font-bold text-lg tracking-tight">Coffee Shop Sunday</h2>
-            <p className="text-sm text-gray-700 mt-1">5:30pm | 4 Dock Road</p>
+            <p className="text-sm text-gray-700 mt-1">5:30pm | 4 Dock Rd, V&A Waterfront</p>
             <Link
               href="https://www.google.com/maps/dir/?api=1&destination=4+Dock+Road"
               target="_blank"
@@ -70,7 +73,32 @@ export default function Visit() {
           </div>
         </section>
 
-        <section className="w-full border border-black rounded-2xl overflow-hidden shadow-sm bg-gray-50"> <div className="relative w-full h-56"> <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2914.032489186284!2d18.413920410741156!3d-33.925260973093295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc67657a924e57%3A0xb0ab407c9fa0b3d6!2sLong%20Street%20Backpackers!5e1!3m2!1sen!2sza!4v1760708580912!5m2!1sen!2sza" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" ></iframe> </div> <div className="p-4 text-center"> <h2 className="font-bold text-lg tracking-tight">Beyond On Long</h2> <p className="text-sm text-gray-700 mt-1">209 Long Street</p> <Link href="https://www.google.com/maps/dir/?api=1&destination=209+Long+Street" target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm font-semibold text-blue-700 underline" > Get Directions </Link> </div> </section>
+        {/* Location 3 */}
+        <section className="w-full border border-black rounded-2xl overflow-hidden shadow-sm bg-gray-50">
+          <div className="relative w-full h-56">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2914.032489186284!2d18.413920410741156!3d-33.925260973093295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc67657a924e57%3A0xb0ab407c9fa0b3d6!2sLong%20Street%20Backpackers!5e1!3m2!1sen!2sza!4v1760708580912!5m2!1sen!2sza"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <div className="p-4 text-center">
+            <h2 className="font-bold text-lg tracking-tight">Beyond On Long</h2>
+            <p className="text-sm text-gray-700 mt-1">Special Events | 209 Long St, CBD</p>
+            <Link
+              href="https://www.google.com/maps/dir/?api=1&destination=209+Long+Street"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-block text-sm font-semibold text-blue-700 underline"
+            >
+              Get Directions
+            </Link>
+          </div>
+        </section>
       </div>
 
       {/* Footer Note */}

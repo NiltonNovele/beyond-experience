@@ -36,7 +36,7 @@ export default function SignInPage() {
       <SignedOut>
         {/* Logo Section */}
         <div className="mb-10 flex flex-col items-center">
-          <div className="rounded-full w-48 h-48 overflow-hidden flex items-center justify-center border-4 border-white shadow-lg">
+          <div className="rounded-full w-75 h-75 overflow-hidden flex items-center justify-center ">
             <img
               src="/beyond.png"
               alt="Beyond Logo"

@@ -97,7 +97,7 @@ export default function HomePage() {
 
       {/* Main Section */}
       <main className="flex flex-col items-center text-center mt-10 mb-12 max-w-xl">
-        <motion.h2
+        {/* <motion.h2
           className="text-4xl mb-2 text-gray-700"
           style={{ fontFamily: "MyFont" }}
           initial={{ opacity: 0, y: -10 }}
@@ -105,10 +105,10 @@ export default function HomePage() {
           transition={{ duration: 0.7 }}
         >
           Welcome to
-        </motion.h2>
+        </motion.h2> */}
 
         <motion.img
-          src="/Beyond Logo - Login Page.png"
+          src="/Home Page - Lock Up.png"
           alt="Beyond Logo"
           className="object-contain w-56 h-56 mb-6 drop-shadow-md"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -129,7 +129,7 @@ export default function HomePage() {
         </motion.p>
 
         <motion.div
-          className="bg-white border border-gray-200 rounded-2xl p-6 shadow-xl w-full backdrop-blur-sm"
+          className="  border-white-200 rounded-2xl p-6  w-full "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -156,27 +156,16 @@ export default function HomePage() {
 
       {/* Social Links */}
       <footer className="flex flex-col items-center gap-6 mb-6">
+        <p className="text-gray-600 text-sm">Follow us on</p>
         <div className="flex gap-6">
-          <a
-            href="https://www.instagram.com/beyondexperience_?igsh=MTljaDU1MDY2a2xieQ=="
-            aria-label="Instagram"
-            className="hover:text-gray-700 transform hover:scale-110 transition-all"
-          >
-            <FaInstagram className="w-7 h-7" />
+          <a href="https://www.instagram.com/beyondexperience_?igsh=MTljaDU1MDY2a2xieQ==" aria-label="Instagram">
+            <FaInstagram className="w-6 h-6 hover:text-gray-600 transition-transform transform hover:scale-110" />
           </a>
-          <a
-            href="https://www.tiktok.com/@beyondexperience_?_t=ZS-8yypDgdzo5F&_r=1"
-            aria-label="TikTok"
-            className="hover:text-gray-700 transform hover:scale-110 transition-all"
-          >
-            <FaTiktok className="w-7 h-7" />
+          <a href="https://www.tiktok.com/@beyondexperience_?_t=ZS-8yypDgdzo5F&_r=1&fbclid=PAZnRzaANXtU9leHRuA2FlbQIxMQABp5ytfVaxdhCD3O1aCarYG7JUAhj_uoOo9OtcG_kk5yTznpjyIreF7un9m5mF_aem_21O3dT35zZG2C5eoERSXMg" aria-label="TikTok">
+            <FaTiktok className="w-6 h-6 hover:text-gray-600 transition-transform transform hover:scale-110" />
           </a>
-          <a
-            href="https://m.youtube.com/@beyondonlive"
-            aria-label="YouTube"
-            className="hover:text-gray-700 transform hover:scale-110 transition-all"
-          >
-            <FaYoutube className="w-7 h-7" />
+          <a href="https://m.youtube.com/@beyondonlive?fbclid=PARlRTSANXtWJleHRuA2FlbQIxMQABpwd1h6E2Lx8smyAKb6sJAiiBpIpRJqMuAhuG4z6r6O_HtTRh56sJ6VRcKCl4_aem_W-0LySA_IqUd9lZA5o-VVg" aria-label="YouTube">
+            <FaYoutube className="w-6 h-6 hover:text-gray-600 transition-transform transform hover:scale-110" />
           </a>
         </div>
 

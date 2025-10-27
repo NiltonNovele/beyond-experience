@@ -10,14 +10,15 @@ export default function Give() {
     branchCode: "210835",
     accountHolder: "Beyond Experience International NPC",
     qrCode: "/qr.png",
-    snapScanLink: "https://pos.snapscan.io/qr/F-kNZsXV",
+    snapScanLink: "https://pos.snapscan.io/qr/F-kNZsXV", 
+    swiftCode: "FIRNZAJJ"
   };
 
   return (
     <main className="min-h-screen bg-white flex flex-col items-center px-6 py-12 text-black">
       {/* Header */}
       <header className="text-center mb-10">
-        <h1 className="text-6xl font-extrabold mb-4 tracking-tight" style={{ fontFamily: "MyFont2" }}>
+        <h1 className="text-6xl font-extrabold mb-6 text-center font-serif" style={{ fontFamily: "MyFont2" }}>
           Online Giving
         </h1>
         <p className="text-gray-700 text-base max-w-sm mx-auto">
@@ -66,6 +67,9 @@ export default function Give() {
           </p>
           <p>
             <strong>Branch Code:</strong> {donationInfo.branchCode}
+          </p>
+          <p>
+            <strong>Swift Code:</strong> {donationInfo.swiftCode}
           </p>
           <p>
             <strong>Account Holder:</strong> {donationInfo.accountHolder}

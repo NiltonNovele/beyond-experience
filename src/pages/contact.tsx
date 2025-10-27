@@ -6,7 +6,7 @@ export default function Contact() {
     <main className="min-h-screen flex flex-col items-center justify-between bg-white px-6 py-12 md:py-16 text-black">
       {/* Header */}
       <section className="text-center space-y-4 max-w-lg">
-        <h1 className="text-6xl md:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "MyFont2" }}>
+        <h1 className="text-6xl font-extrabold mb-6 text-center font-serif" style={{ fontFamily: "MyFont2" }}>
           Get in touch
         </h1>
         <p className="text-gray-700 text-sm md:text-base leading-relaxed">
