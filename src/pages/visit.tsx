@@ -36,7 +36,7 @@ export default function Visit() {
               8:30am | 11 Stanley Rd, Observatory
             </p>
             <Link
-              href="https://www.google.com/maps/dir/?api=1&destination=11+Stanley+Rd,+Claremont"
+              href="https://maps.app.goo.gl/o9qTkq7LVZMoe5U96"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 inline-block text-sm font-semibold text-blue-700 underline"
@@ -100,11 +100,6 @@ export default function Visit() {
           </div>
         </section>
       </div>
-
-      {/* Footer Note */}
-      <footer className="mt-10 text-xs text-gray-500 text-center max-w-xs">
-        *We can’t wait to welcome you to a Beyond Experience gathering.
-      </footer>
     </main>
   );
 }

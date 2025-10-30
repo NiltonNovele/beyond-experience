@@ -10,76 +10,86 @@ export default function Give() {
     branchCode: "210835",
     accountHolder: "Beyond Experience International NPC",
     qrCode: "/qr.png",
-    snapScanLink: "https://pos.snapscan.io/qr/F-kNZsXV", 
-    swiftCode: "FIRNZAJJ"
+    snapScanLink: "https://pos.snapscan.io/qr/F-kNZsXV",
+    swiftCode: "FIRNZAJJ",
   };
 
   return (
     <main className="min-h-screen bg-white flex flex-col items-center px-6 py-12 text-black">
-      {/* Header */}
-      <header className="text-center mb-10">
-        <h1 className="text-6xl font-extrabold mb-6 text-center font-serif" style={{ fontFamily: "MyFont2" }}>
+      {/* ===== HEADER ===== */}
+      <header className="text-center mb-16 max-w-3xl">
+        <h1
+          className="text-6xl font-bold text-center w-full" style={{ fontFamily: "MyFont2" }}
+        >
           Online Giving
         </h1>
-        <p className="text-gray-700 text-base max-w-sm mx-auto">
-          Partner with this vision to reach <br />
-          72 million people across 72 nations.
+        <p className="text-gray-700 text-base sm:text-lg lg:text-xl leading-relaxed">
+          Partner with this vision to reach{" "}
+          <span className="font-semibold text-gray-900">72 million people</span> across{" "}
+          <span className="font-semibold text-gray-900">72 nations</span>.
         </p>
       </header>
 
-      {/* SnapScan Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl w-full">
+      {/* ===== MAIN CONTENT GRID ===== */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 w-full max-w-6xl items-start">
+        {/* --- SnapScan Link Card --- */}
         <a
           href={donationInfo.snapScanLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center p-6 rounded-2xl bg-gray-50 border border-gray-200 text-black shadow-sm hover:shadow-md hover:scale-105 transition-transform"
+          className="flex flex-col items-center justify-center p-8 rounded-2xl bg-gray-50 border border-gray-200 text-black shadow-sm hover:shadow-lg hover:scale-[1.02] transition-transform duration-200"
         >
-          <FaCreditCard className="w-8 h-8 mb-3" />
-          <h2 className="text-xl font-semibold mb-1 text-center">Tap to give via SnapScan</h2>
+          <FaCreditCard className="w-10 h-10 mb-4 text-blue-600" />
+          <h2 className="text-xl lg:text-2xl font-semibold mb-1 text-center">
+            Tap to give via SnapScan
+          </h2>
+          <p className="text-sm text-gray-500 text-center">
+            Quick, secure and simple.
+          </p>
         </a>
+
+        {/* --- QR Code Section --- */}
+        <section className="flex flex-col items-center justify-center bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+          <h2 className="text-2xl font-bold mb-4 tracking-tight">SnapScan</h2>
+          <div className="bg-white border border-gray-300 rounded-lg p-4 flex flex-col items-center shadow-sm">
+            <Image
+              src={donationInfo.qrCode}
+              alt="SnapScan QR Code"
+              width={220}
+              height={220}
+              className="rounded-md"
+            />
+            <p className="mt-3 text-sm text-gray-600 italic">Scan here to give</p>
+          </div>
+        </section>
+
+        {/* --- Banking Details Section --- */}
+        <section className="bg-gray-50 border border-gray-200 rounded-2xl shadow-sm p-8 text-center">
+          <h2 className="text-2xl font-bold mb-4 tracking-tight">Banking Details</h2>
+          <div className="text-left text-sm lg:text-base text-gray-700 space-y-2">
+            <p>
+              <strong>Bank:</strong> {donationInfo.bank}
+            </p>
+            <p>
+              <strong>Account Number:</strong> {donationInfo.accountNumber}
+            </p>
+            <p>
+              <strong>Branch Code:</strong> {donationInfo.branchCode}
+            </p>
+            <p>
+              <strong>Swift Code:</strong> {donationInfo.swiftCode}
+            </p>
+            <p>
+              <strong>Account Holder:</strong> {donationInfo.accountHolder}
+            </p>
+          </div>
+        </section>
       </div>
 
-      {/* SnapScan QR Code Section */}
-      <section className="flex flex-col items-center my-10">
-        <h2 className="text-2xl font-bold mb-4 tracking-tight">SnapScan</h2>
-        <div className="bg-white border border-gray-300 rounded-lg p-4 flex flex-col items-center shadow-sm">
-          <Image
-            src={donationInfo.qrCode}
-            alt="SnapScan QR Code"
-            width={180}
-            height={180}
-            className="rounded-md"
-          />
-          <p className="mt-3 text-sm text-gray-600 italic">Snap here to pay</p>
-        </div>
-      </section>
-
-      {/* Banking Details Section */}
-      <section className="w-full max-w-xs bg-gray-50 border border-gray-300 rounded-2xl shadow-sm p-5 text-center">
-        <h2 className="text-2xl font-bold mb-3 tracking-tight">Banking Details</h2>
-        <div className="text-left text-sm text-gray-700 space-y-1">
-          <p>
-            <strong>Bank:</strong> {donationInfo.bank}
-          </p>
-          <p>
-            <strong>Account Number:</strong> {donationInfo.accountNumber}
-          </p>
-          <p>
-            <strong>Branch Code:</strong> {donationInfo.branchCode}
-          </p>
-          <p>
-            <strong>Swift Code:</strong> {donationInfo.swiftCode}
-          </p>
-          <p>
-            <strong>Account Holder:</strong> {donationInfo.accountHolder}
-          </p>
-        </div>
-      </section>
-
-      {/* Footer Note */}
-      <footer className="mt-6 text-xs text-gray-500 text-center max-w-xs">
-        *All contributions go towards advancing the Beyond mission.
+      {/* ===== FOOTER NOTE ===== */}
+      <footer className="mt-12 text-xs sm:text-sm text-gray-500 text-center max-w-md leading-relaxed">
+        *All contributions go towards advancing the Beyond mission and empowering
+        communities across nations.
       </footer>
     </main>
   );

@@ -30,6 +30,7 @@ export default function ConstructionProgress() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
   // 🧠 Move posts into React state
   const [posts, setPosts] = useState<Post[]>([
@@ -257,11 +258,12 @@ export default function ConstructionProgress() {
                   />
                 ) : (
                   <img
-                    key={i}
-                    src={m}
-                    alt={post.title}
-                    className="w-64 h-40 object-cover rounded-lg border border-gray-300 snap-center"
-                  />
+  key={i}
+  src={m}
+  alt={post.title}
+  onClick={() => setExpandedImage(m)}
+  className="w-64 h-40 object-cover rounded-lg border border-gray-300 snap-center cursor-pointer hover:opacity-80 transition"
+/>
                 )
               )}
             </div>
@@ -298,6 +300,32 @@ export default function ConstructionProgress() {
           </div>
         ))}
       </div>
+
+      <AnimatePresence>
+  {expandedImage && (
+    <motion.div
+      key="overlay"
+      className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="relative">
+        <img
+          src={expandedImage}
+          alt="Expanded view"
+          className="max-w-[90vw] max-h-[85vh] rounded-xl shadow-2xl object-contain"
+        />
+        <button
+          onClick={() => setExpandedImage(null)}
+          className="absolute -top-4 -right-4 bg-white text-black rounded-full p-2 hover:bg-gray-200 shadow-lg"
+        >
+          ✕
+        </button>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
     </div>
   );
 }
