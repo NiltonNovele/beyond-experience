@@ -108,25 +108,13 @@ export default function HomePage() {
         </motion.h2> */}
 
         <motion.img
-          src="/Home Page - Lock Up.png"
+          src="/Beyond Logo - Login Page.png"
           alt="Beyond Logo"
           className="object-contain w-56 h-56 mb-6 drop-shadow-md"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
-
-        <motion.p
-          className="text-gray-600 leading-relaxed mb-10 text-lg md:text-xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          Church on a Mission <br />
-          <span className="text-gray-800 font-medium">Christ at the Centre</span> <br />
-          Community at Heart <br />
-          Generosity in Action
-        </motion.p>
 
         <motion.div
           className="  border-white-200 rounded-2xl p-6  w-full "
