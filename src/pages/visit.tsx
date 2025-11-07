@@ -36,7 +36,7 @@ export default function Visit() {
               8:30am | 11 Stanley Rd, Observatory
             </p>
             <Link
-              href="https://maps.app.goo.gl/o9qTkq7LVZMoe5U96"
+              href="https://maps.app.goo.gl/XZxdQimLegrecjKR7"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 inline-block text-sm font-semibold text-blue-700 underline"
